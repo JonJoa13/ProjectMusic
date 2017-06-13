@@ -21,13 +21,13 @@ public class Singer_Band {
 	 */
 
 	public Singer_Band(){
-		this.albums = new ArrayList<Album>();
+		this.albums = new LinkedHashSet<Album>();
 	}
 
 	public Singer_Band(String name, String creation_date){
 		this.name = name;
 		this.creation_date = creation_date;
-		this.albums = new ArrayList<Album>();
+		this.albums = new LinkedHashSet<Album>();
 
 	}
 
@@ -46,13 +46,13 @@ public class Singer_Band {
 
 	//Can have many albums
 	@OneToMany(mappedBy="singer_band", cascade = CascadeType.ALL)
-	private List<Album> albums;
+	private Set<Album> albums;
 
 	//Getter and Setter List of Albums
-	public List<Album> getAlbums() {
+	public Set<Album> getAlbums() {
 		return albums;
 	}
-	public void setAlbums(List<Album> albums) {
+	public void setAlbums(Set<Album> albums) {
 		this.albums = albums;
 	}
 

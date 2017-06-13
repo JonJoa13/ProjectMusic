@@ -13,7 +13,7 @@ public class Album
 	@Column(name="album_name")
 	private String album_name;
 	@Column(name="album_year")
-	private int album_year;
+	private String album_year;
 
 	/**
 	 * Relations
@@ -27,11 +27,11 @@ public class Album
 	 * Constructors
 	 */
 	public Album(){
-		this.songs = new ArrayList<Song>();
+		this.songs = new LinkedHashSet<Song>();
 	}
 
-	public Album(String album_name, int album_year){
-		this.songs = new ArrayList<Song>();
+	public Album(String album_name, String album_year){
+		this.songs = new LinkedHashSet<Song>();
 		this.album_name = album_name;
 		this.album_year = album_year;
 	}
@@ -55,13 +55,13 @@ public class Album
 
 	//Many songs in one album
 	@OneToMany(mappedBy = "album" , cascade = CascadeType.ALL)
-	private List<Song> songs;
+	private Set<Song> songs;
 
 	//Getter and Singer List of Songs
-	public List<Song> getSongs() {
+	public Set<Song> getSongs() {
 		return songs;
 	}
-	public void setSongs(List<Song> songs) {
+	public void setSongs(Set<Song> songs) {
 		this.songs = songs;
 	}
 
@@ -86,10 +86,10 @@ public class Album
 	}
 
 	//Album_year
-	public int getAlbum_year() {
+	public String getAlbum_year() {
 		return album_year;
 	}
-	public void setAlbum_year(int album_year) {
+	public void setAlbum_year(String album_year) {
 		this.album_year = album_year;
 	}
 }

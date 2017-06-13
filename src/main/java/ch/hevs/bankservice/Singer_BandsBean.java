@@ -1,4 +1,4 @@
-package ch.hevs.bankservice;
+                      package ch.hevs.bankservice;
 
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedHashSet;
@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.UserTransaction;
 
+import ch.hevs.businessobject.Album;
 import ch.hevs.businessobject.Singer_Band;
 
 @Local
@@ -137,5 +138,26 @@ public class Singer_BandsBean
 	
 	*/
 	
-	
+	//Méthode d'AJOUT d'un album à un Singer ou Band
+	public void addAlbumToSingerBand(Singer_Band singerBand, Album albumToAdd)
+	{
+		try
+		{
+			transactionUser.begin();
+			/*
+			* Exectue la transaction
+			*/
+			singerBand.addAlbum(albumToAdd);
+			
+			if(!entityManager.contains(singerBand))
+			{
+				entityManager.persist(entityManager.contains(singerBand) ? singerBand : entityManager.merge(singerBand));
+			}
+			transactionUser.commit();
+		}
+		catch (Exception exception)
+		{
+			exception.printStackTrace();
+		}
+	}
 }
