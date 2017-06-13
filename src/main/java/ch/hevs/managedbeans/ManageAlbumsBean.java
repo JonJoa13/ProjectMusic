@@ -301,6 +301,7 @@ public class ManageAlbumsBean {
 		currentMessage = "";
 		return message;
 	}
+	
 
 
 	public void setCurrentMessage(String currentMessage) {
